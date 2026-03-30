@@ -96,6 +96,7 @@
             .excel-grid {
                 grid-template-columns: repeat(4, minmax(0, 1fr));
             }
+
             .section-title {
                 grid-column: span 4 !important;
             }
@@ -107,22 +108,27 @@
                 grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 10px;
             }
+
             .section-title {
                 grid-column: span 2 !important;
                 font-size: 0.8rem;
             }
+
             .cell {
                 min-height: 78px;
                 padding: 8px 6px;
             }
+
             .cell-label {
                 font-size: 0.7rem;
                 margin-bottom: 6px;
             }
+
             .cell-input, .cell-result {
                 font-size: 0.85rem;
                 padding: 4px 2px;
             }
+
             .ref {
                 font-size: 0.65rem;
                 white-space: normal;
@@ -135,9 +141,11 @@
             .cell-label {
                 font-size: 0.65rem;
             }
+
             .cell-input, .cell-result {
                 font-size: 0.8rem;
             }
+
             .ref {
                 font-size: 0.6rem;
             }
@@ -331,14 +339,17 @@
             .master-container {
                 padding: 12px 10px;
             }
+
             .btn {
                 padding: 6px 12px;
                 font-size: 0.75rem;
             }
+
             .big-output {
                 min-height: 320px;
                 font-size: 0.7rem;
             }
+
             .text-panel h2 {
                 font-size: 1rem;
             }
@@ -364,98 +375,98 @@
 
                 <div class="cell"><span class="cell-label">ПОЛ</span>
                     <select class="cell-input" id="gender">
-                        <option value="—">-</option>
+                        <option value="—"></option>
                         <option value="М">М</option>
                         <option value="Ж">Ж</option>
                     </select>
                 </div>
 
-                <div class="cell"><span class="cell-label">Рост, см</span><input class="cell-input" id="height" autocomplete="off" value="" type="number"><span class="ref">-</span></div>
-                <div class="cell"><span class="cell-label">Вес, кг</span><input class="cell-input" id="weight" autocomplete="off" value="" type="number"><span class="ref">-</span></div>
-                <div class="cell"><span class="cell-label">ППТ, м²</span><input class="cell-input" id="bsa" autocomplete="off" value="" type="number"><span class="ref">-</span></div>
-                <div class="cell"><span class="cell-label">Ритм</span><input class="cell-input" id="rhythm" autocomplete="off" value=""><span class="ref">-</span></div>
+                <div class="cell"><span class="cell-label">Рост, см</span><input class="cell-input" id="height" autocomplete="off" value="" type="number"><span class="ref"></span></div>
+                <div class="cell"><span class="cell-label">Вес, кг</span><input class="cell-input" id="weight" autocomplete="off" value="" type="number"><span class="ref"></span></div>
+                <div class="cell"><span class="cell-label">ППТ, м²</span><input class="cell-input" id="bsa" autocomplete="off" value="" type="number"><span class="ref"></span></div>
+                <div class="cell"><span class="cell-label">Ритм</span><input class="cell-input" id="rhythm" autocomplete="off" value=""><span class="ref"></span></div>
 
                 <div class="section-title">🩸 Аорта</div>
 
-                <div class="cell"><span class="cell-label">Ао син.,мм</span><input class="cell-input" id="aorta_sv" autocomplete="off" value="" type="number"><span class="ref" mMin="31" mMax="40" wMin="27" wMax="34">-</span></div>
-                <div class="cell"><span class="cell-label">Ао в.,мм</span><input class="cell-input" id="aorta_asc" autocomplete="off" value="" type="number"><span class="ref" mMin="26" mMax="38" wMin="23" wMax="33">-</span></div>
-                <div class="cell"><span class="cell-label">ИАо син.,мм/м²</span><span class="cell-result" id="aorta_sv_i"></span><span class="ref" mMin="0" mMax="19" wMin="0" wMax="20">-</span></div>
-                <div class="cell"><span class="cell-label">ИАо в., мм/м²</span><span class="cell-result" id="aorta_asc_i"></span><span class="ref" mMin="0" mMax="17" wMin="0" wMax="19">-</span></div>
-                <div class="cell"><span class="cell-label">Ао дуга</span><input class="cell-input" id="aorta_arc" autocomplete="off" value="" type="number"><span class="ref" mMin="27" mMax="36" wMin="27" wMax="36">-</span></div>
+                <div class="cell"><span class="cell-label">Ао син.,мм</span><input class="cell-input" id="aorta_sv" autocomplete="off" value="" type="number"><span class="ref" mMin="31" mMax="40" wMin="27" wMax="34"></span></div>
+                <div class="cell"><span class="cell-label">Ао в.,мм</span><input class="cell-input" id="aorta_asc" autocomplete="off" value="" type="number"><span class="ref" mMin="26" mMax="38" wMin="23" wMax="33"></span></div>
+                <div class="cell"><span class="cell-label">ИАо син.,мм/м²</span><span class="cell-result" id="aorta_sv_i"></span><span class="ref" mMin="0" mMax="19" wMin="0" wMax="20"></span></div>
+                <div class="cell"><span class="cell-label">ИАо в., мм/м²</span><span class="cell-result" id="aorta_asc_i"></span><span class="ref" mMin="0" mMax="17" wMin="0" wMax="19"></span></div>
+                <div class="cell"><span class="cell-label">Ао дуга</span><input class="cell-input" id="aorta_arc" autocomplete="off" value="" type="number"><span class="ref" mMin="27" mMax="36" wMin="27" wMax="36"></span></div>
 
                 <div class="section-title">❤️ Левый желудочек</div>
 
-                <div class="cell"><span class="cell-label">ТМЖП,мм</span><input class="cell-input" id="mgp" autocomplete="off" value="" type="number"><span class="ref" mMin="6" mMax="10" wMin="6" wMax="9">-</span></div>
-                <div class="cell"><span class="cell-label">ТЗС,мм</span><input class="cell-input" id="zs" autocomplete="off" value="" type="number"><span class="ref" mMin="6" mMax="10" wMin="6" wMax="9">-</span></div>
-                <div class="cell"><span class="cell-label">КДР,мм</span><input class="cell-input" id="kdr" autocomplete="off" value="" type="number"><span class="ref" mMin="42" mMax="58" wMin="38" wMax="52">-</span></div>
-                <div class="cell"><span class="cell-label">КСР,мм</span><input class="cell-input" id="ksr" autocomplete="off" value="" type="number"><span class="ref" mMin="25" mMax="40" wMin="22" wMax="35">-</span></div>
-                <div class="cell"><span class="cell-label">ИКДР, мм/м²</span><span class="cell-result" id="kdr_i"></span><span class="ref" mMin="22" mMax="30" wMin="23" wMax="31">-</span></div>
-                <div class="cell"><span class="cell-label">ОТС</span><span class="cell-result" id="ots"></span><span class="ref" mMin="" mMax="<0.42" wMin="" wMax="<0.42">-</span></div>
-                <div class="cell"><span class="cell-label">ММ, г</span><input class="cell-input" id="mm" autocomplete="off" value="" type="number"><span class="ref" mMin="88" mMax="224" wMin="67" wMax="162">-</span></div>
-                <div class="cell"><span class="cell-label">ИММ, г/м²</span><span class="cell-result" id="mm_i"></span><span class="ref" mMin="49" mMax="115" wMin="43" wMax="95">-</span></div>
-                <div class="cell"><span class="cell-label">КДО сим, мл</span><input class="cell-input" id="kdo" autocomplete="off" value="" type="number"><span class="ref" mMin="62" mMax="150" wMin="46" wMax="106">-</span></div>
-                <div class="cell"><span class="cell-label">ИКДО, мл/м²</span><span class="cell-result" id="kdo_i"></span><span class="ref" mMin="34" mMax="74" wMin="29" wMax="61">-</span></div>
-                <div class="cell"><span class="cell-label">ФВ Симпсон,%</span><input class="cell-input" id="fv" autocomplete="off" value="" type="number"><span class="ref" mMin="52" mMax="72" wMin="54" wMax="74">-</span></div>
-                <div class="cell"><span class="cell-label">D ВТЛЖ, мм</span><input class="cell-input" id="vtlg" autocomplete="off" value="" type="number"><span class="ref">-</span></div>
+                <div class="cell"><span class="cell-label">ТМЖП,мм</span><input class="cell-input" id="mgp" autocomplete="off" value="" type="number"><span class="ref" mMin="6" mMax="10" wMin="6" wMax="9"></span></div>
+                <div class="cell"><span class="cell-label">ТЗС,мм</span><input class="cell-input" id="zs" autocomplete="off" value="" type="number"><span class="ref" mMin="6" mMax="10" wMin="6" wMax="9"></span></div>
+                <div class="cell"><span class="cell-label">КДР,мм</span><input class="cell-input" id="kdr" autocomplete="off" value="" type="number"><span class="ref" mMin="42" mMax="58" wMin="38" wMax="52"></span></div>
+                <div class="cell"><span class="cell-label">КСР,мм</span><input class="cell-input" id="ksr" autocomplete="off" value="" type="number"><span class="ref" mMin="25" mMax="40" wMin="22" wMax="35"></span></div>
+                <div class="cell"><span class="cell-label">ИКДР, мм/м²</span><span class="cell-result" id="kdr_i"></span><span class="ref" mMin="22" mMax="30" wMin="23" wMax="31"></span></div>
+                <div class="cell"><span class="cell-label">ОТС</span><span class="cell-result" id="ots"></span><span class="ref" mMin="" mMax="<0.42" wMin="" wMax="<0.42"></span></div>
+                <div class="cell"><span class="cell-label">ММ, г</span><input class="cell-input" id="mm" autocomplete="off" value="" type="number"><span class="ref" mMin="88" mMax="224" wMin="67" wMax="162"></span></div>
+                <div class="cell"><span class="cell-label">ИММ, г/м²</span><span class="cell-result" id="mm_i"></span><span class="ref" mMin="49" mMax="115" wMin="43" wMax="95"></span></div>
+                <div class="cell"><span class="cell-label">КДО сим, мл</span><input class="cell-input" id="kdo" autocomplete="off" value="" type="number"><span class="ref" mMin="62" mMax="150" wMin="46" wMax="106"></span></div>
+                <div class="cell"><span class="cell-label">ИКДО, мл/м²</span><span class="cell-result" id="kdo_i"></span><span class="ref" mMin="34" mMax="74" wMin="29" wMax="61"></span></div>
+                <div class="cell"><span class="cell-label">ФВ Симпсон,%</span><input class="cell-input" id="fv" autocomplete="off" value="" type="number"><span class="ref" mMin="52" mMax="72" wMin="54" wMax="74"></span></div>
+                <div class="cell"><span class="cell-label">D ВТЛЖ, мм</span><input class="cell-input" id="vtlg" autocomplete="off" value="" type="number"><span class="ref"></span></div>
 
                 <div class="section-title">📈 Диастолическая функция левого желудочка</div>
 
-                <div class="cell"><span class="cell-label">E,см/с</span><input class="cell-input" id="emk" autocomplete="off" value="" type="number"><span class="ref" mMin="ФП<100" mMax="" wMin="ФП<100" wMax="">-</span></div>
-                <div class="cell"><span class="cell-label">E/A</span><input class="cell-input" id="e_amk" autocomplete="off" value="" type="number"><span class="ref" mMin="0.8" mMax="2.0" wMin="0.8" wMax="2.0">-</span></div>
-                <div class="cell"><span class="cell-label">e'лат., см/с</span><input class="cell-input" id="el" autocomplete="off" value="" type="number"><span class="ref" mMin=">7" mMax="" wMin=">7" wMax="">-</span></div>
-                <div class="cell"><span class="cell-label">e'сеп., см/с</span><input class="cell-input" id="es" autocomplete="off" value="" type="number"><span class="ref" mMin=">6" mMax="" wMin=">6" wMax="">-</span></div>
-                <div class="cell"><span class="cell-label">e'ср., см/с</span><span class="cell-result" id="eavg"></span><span class="ref" mMin=">6.5" mMax="" wMin=">6.5" wMax="">-</span></div>
+                <div class="cell"><span class="cell-label">E,см/с</span><input class="cell-input" id="emk" autocomplete="off" value="" type="number"><span class="ref" mMin="ФП<100" mMax="" wMin="ФП<100" wMax=""></span></div>
+                <div class="cell"><span class="cell-label">E/A</span><input class="cell-input" id="e_amk" autocomplete="off" value="" type="number"><span class="ref" mMin="0.8" mMax="2.0" wMin="0.8" wMax="2.0"></span></div>
+                <div class="cell"><span class="cell-label">e'лат., см/с</span><input class="cell-input" id="el" autocomplete="off" value="" type="number"><span class="ref" mMin=">7" mMax="" wMin=">7" wMax=""></span></div>
+                <div class="cell"><span class="cell-label">e'сеп., см/с</span><input class="cell-input" id="es" autocomplete="off" value="" type="number"><span class="ref" mMin=">6" mMax="" wMin=">6" wMax=""></span></div>
+                <div class="cell"><span class="cell-label">e'ср., см/с</span><span class="cell-result" id="eavg"></span><span class="ref" mMin=">6.5" mMax="" wMin=">6.5" wMax=""></span></div>
 
-                <div class="cell"><span class="cell-label">Е/e'ср.</span><input class="cell-input" id="emk_e" autocomplete="off" value="" type="number"><span class="ref" mMin="<14" mMax="" wMin="<14" wMax="">-</span></div>
+                <div class="cell"><span class="cell-label">Е/e'ср.</span><input class="cell-input" id="emk_e" autocomplete="off" value="" type="number"><span class="ref" mMin="<14" mMax="" wMin="<14" wMax=""></span></div>
 
-                <div class="cell"><span class="cell-label">V ТН, м/с</span><input class="cell-input" id="vtrmax" autocomplete="off" value="" type="number"><span class="ref" mMin="" mMax="<2.8" wMin="" wMax="<2.8">-</span></div>
-                <div class="cell"><span class="cell-label">Tdec, мс</span><input class="cell-input" id="tdex" autocomplete="off" value="" type="number"><span class="ref" mMin=">160" mMax="" wMin=">160" wMax="">-</span></div>
-                <div class="cell"><span class="cell-label">S/D</span><input class="cell-input" id="s_d" autocomplete="off" value="" type="number"><span class="ref" mMin=">0.67, ФП >1" mMax="" wMin=">0.67, ФП >1" wMax="">-</span></div>
-                <div class="cell"><span class="cell-label">IVRT, мс</span><input class="cell-input" id="ivrt" autocomplete="off" value="" type="number"><span class="ref" mMin=">70" mMax="" wMin=">70" wMax="">-</span></div>
-                <div class="cell"><span class="cell-label">ИМТ, кг/м²</span><span class="cell-result" id="imt"></span><span class="ref" mMin="<30" mMax="" wMin="<30" wMax="">-</span></div>
+                <div class="cell"><span class="cell-label">V ТН, м/с</span><input class="cell-input" id="vtrmax" autocomplete="off" value="" type="number"><span class="ref" mMin="" mMax="<2.8" wMin="" wMax="<2.8"></span></div>
+                <div class="cell"><span class="cell-label">Tdec, мс</span><input class="cell-input" id="tdex" autocomplete="off" value="" type="number"><span class="ref" mMin=">160" mMax="" wMin=">160" wMax=""></span></div>
+                <div class="cell"><span class="cell-label">S/D</span><input class="cell-input" id="s_d" autocomplete="off" value="" type="number"><span class="ref" mMin=">0.67, ФП >1" mMax="" wMin=">0.67, ФП >1" wMax=""></span></div>
+                <div class="cell"><span class="cell-label">IVRT, мс</span><input class="cell-input" id="ivrt" autocomplete="off" value="" type="number"><span class="ref" mMin=">70" mMax="" wMin=">70" wMax=""></span></div>
+                <div class="cell"><span class="cell-label">ИМТ, кг/м²</span><span class="cell-result" id="imt"></span><span class="ref" mMin="<30" mMax="" wMin="<30" wMax=""></span></div>
 
                 <div class="section-title">📐 Левое предсердие</div>
 
-                <div class="cell"><span class="cell-label">Диаметр ЛП, мм</span><input class="cell-input" id="dlp" autocomplete="off" value="" type="number"><span class="ref" mMin="30" mMax="40" wMin="27" wMax="38">-</span></div>
-                <div class="cell"><span class="cell-label">ОЛП, мл</span><input class="cell-input" id="olp" autocomplete="off" value="" type="number"><span class="ref" mMin="22" mMax="52" wMin="18" wMax="58">-</span></div>
-                <div class="cell"><span class="cell-label">ИОЛП, мл/м²</span><span class="cell-result" id="olp_i"></span><span class="ref" mMin="16" mMax="34" wMin="16" wMax="34">-</span></div>
+                <div class="cell"><span class="cell-label">Диаметр ЛП, мм</span><input class="cell-input" id="dlp" autocomplete="off" value="" type="number"><span class="ref" mMin="30" mMax="40" wMin="27" wMax="38"></span></div>
+                <div class="cell"><span class="cell-label">ОЛП, мл</span><input class="cell-input" id="olp" autocomplete="off" value="" type="number"><span class="ref" mMin="22" mMax="52" wMin="18" wMax="58"></span></div>
+                <div class="cell"><span class="cell-label">ИОЛП, мл/м²</span><span class="cell-result" id="olp_i"></span><span class="ref" mMin="16" mMax="34" wMin="16" wMax="34"></span></div>
 
                 <div class="section-title">💙 Правый желудочек</div>
 
-                <div class="cell"><span class="cell-label">Баз ПЖ, мм</span><input class="cell-input" id="pgb" autocomplete="off" value="" type="number"><span class="ref" mMin="25" mMax="42" wMin="25" wMax="42">-</span></div>
-                <div class="cell"><span class="cell-label">TAPSE, мм</span><input class="cell-input" id="tapse" autocomplete="off" value="" type="number"><span class="ref" mMin=">17" mMax="" wMin=">17" wMax="">-</span></div>
-                <div class="cell"><span class="cell-label">TASV, см/с</span><input class="cell-input" id="tavs" autocomplete="off" value="" type="number"><span class="ref" mMin=">9.5" mMax="" wMin=">9.5" wMax="">-</span></div>
-                <div class="cell"><span class="cell-label">Толщина стенки ПЖ, мм</span><input class="cell-input" id="spg" autocomplete="off" value="" type="number"><span class="ref" mMin="1" mMax="5" wMin="1" wMax="5">-</span></div>
-                <div class="cell"><span class="cell-label">ВТПЖ дис., мм</span><input class="cell-input" id="vtpg" autocomplete="off" value="" type="number"><span class="ref" mMin="17" mMax="27" wMin="17" wMax="27">-</span></div>
+                <div class="cell"><span class="cell-label">Баз ПЖ, мм</span><input class="cell-input" id="pgb" autocomplete="off" value="" type="number"><span class="ref" mMin="25" mMax="42" wMin="25" wMax="42"></span></div>
+                <div class="cell"><span class="cell-label">TAPSE, мм</span><input class="cell-input" id="tapse" autocomplete="off" value="" type="number"><span class="ref" mMin=">17" mMax="" wMin=">17" wMax=""></span></div>
+                <div class="cell"><span class="cell-label">TASV, см/с</span><input class="cell-input" id="tavs" autocomplete="off" value="" type="number"><span class="ref" mMin=">9.5" mMax="" wMin=">9.5" wMax=""></span></div>
+                <div class="cell"><span class="cell-label">Толщина стенки ПЖ, мм</span><input class="cell-input" id="spg" autocomplete="off" value="" type="number"><span class="ref" mMin="1" mMax="5" wMin="1" wMax="5"></span></div>
+                <div class="cell"><span class="cell-label">ВТПЖ дис., мм</span><input class="cell-input" id="vtpg" autocomplete="off" value="" type="number"><span class="ref" mMin="17" mMax="27" wMin="17" wMax="27"></span></div>
 
 
                 <div class="section-title">📐 Правое предсердие</div>
 
-                <div class="cell"><span class="cell-label">ОПП, мл</span><input class="cell-input" id="opp"><span class="ref" mMin="" mMax="" wMin="" wMax="">-</span></div>
-                <div class="cell"><span class="cell-label">ИОПП, мл/м²</span><span class="cell-result" id="opp_i"></span><span class="ref" mMin="18" mMax="32" wMin="15" wMax="27">-</span></div>
-                <div class="cell"><span class="cell-label">Площадь ПП, см²</span><input class="cell-input" id="spp" autocomplete="off" value="" type="number"><span class="ref" mMin="<18" mMax="" wMin="<18" wMax="">-</span></div>
+                <div class="cell"><span class="cell-label">ОПП, мл</span><input class="cell-input" id="opp"><span class="ref" mMin="" mMax="" wMin="" wMax=""></span></div>
+                <div class="cell"><span class="cell-label">ИОПП, мл/м²</span><span class="cell-result" id="opp_i"></span><span class="ref" mMin="18" mMax="32" wMin="15" wMax="27"></span></div>
+                <div class="cell"><span class="cell-label">Площадь ПП, см²</span><input class="cell-input" id="spp" autocomplete="off" value="" type="number"><span class="ref" mMin="<18" mMax="" wMin="<18" wMax=""></span></div>
 
                 <div class="section-title">📉 Расчетное СДЛА</div>
 
-                <div class="cell"><span class="cell-label">Диаметр НПВ, мм</span><input class="cell-input" id="dnpv" autocomplete="off" value="" type="number"><span class="ref" mMin="<21" mMax="" wMin="<21" wMax="">-</span></div>
-                <div class="cell"><span class="cell-label">ЛА, мм</span><input class="cell-input" id="la" autocomplete="off" value="" type="number"><span class="ref" mMin="15" mMax="25" wMin="15" wMax="25">-</span></div>
-                <div class="cell"><span class="cell-label">Р макс. ТН, мм рт. ст.</span><span class="cell-result" id="pmaxtr" autocomplete="off" value="" type="number"></span><span class="ref" mMin="" mMax="" wMin="" wMax="">-</span></div>
-                <div class="cell"><span class="cell-label">Расч. СДЛА, мм рт. ст.</span><input class="cell-input" id="sdla" autocomplete="off" value="" type="number"><span class="ref" mMin="" mMax="<35" wMin="" wMax="<35">-</span></div>
+                <div class="cell"><span class="cell-label">Диаметр НПВ, мм</span><input class="cell-input" id="dnpv" autocomplete="off" value="" type="number"><span class="ref" mMin="<21" mMax="" wMin="<21" wMax=""></span></div>
+                <div class="cell"><span class="cell-label">ЛА, мм</span><input class="cell-input" id="la" autocomplete="off" value="" type="number"><span class="ref" mMin="15" mMax="25" wMin="15" wMax="25"></span></div>
+                <div class="cell"><span class="cell-label">Р макс. ТН, мм рт. ст.</span><span class="cell-result" id="pmaxtr" autocomplete="off" value="" type="number"></span><span class="ref" mMin="" mMax="" wMin="" wMax=""></span></div>
+                <div class="cell"><span class="cell-label">Расч. СДЛА, мм рт. ст.</span><input class="cell-input" id="sdla" autocomplete="off" value="" type="number"><span class="ref" mMin="" mMax="<35" wMin="" wMax="<35"></span></div>
 
                 <div class="section-title">🩺 Описание клапанов</div>
 
-                <div class="cell"><span class="cell-label">Vmax АК, м/с</span><input class="cell-input" id="vmaxak" autocomplete="off" value="" type="number"><span class="ref" mMin="" mMax="<2.0" wMin="" wMax="<2.0">-</span></div>
-                <div class="cell"><span class="cell-label">АН</span><input class="cell-input" id="an" autocomplete="off" value=""><span class="ref" mMin="" mMax="" wMin="" wMax="">-</span></div>
-                <div class="cell"><span class="cell-label">vena contracta АН, мм</span><input class="cell-input" id="vcan" autocomplete="off" value="" type="number"><span class="ref" mMin="" mMax="" wMin="" wMax="">-</span></div>
-                <div class="cell"><span class="cell-label">АС</span><input class="cell-input" id="as" autocomplete="off" value=""><span class="ref" mMin="" mMax="" wMin="" wMax="">-</span></div>
-                <div class="cell"><span class="cell-label">МН</span><input class="cell-input" id="mn" autocomplete="off" value=""><span class="ref" mMin="" mMax="" wMin="" wMax="">-</span></div>
-                <div class="cell"><span class="cell-label">vena contracta МН, мм</span><input class="cell-input" id="vcmn" autocomplete="off" value="" type="number"><span class="ref" mMin="" mMax="" wMin="" wMax="">-</span></div>
-                <div class="cell"><span class="cell-label">МС</span><input class="cell-input" id="ms" autocomplete="off" value=""><span class="ref" mMin="" mMax="" wMin="" wMax="">-</span></div>
-                <div class="cell"><span class="cell-label">ТН</span><input class="cell-input" id="tn" autocomplete="off" value=""><span class="ref" mMin="" mMax="" wMin="" wMax="">-</span></div>
-                <div class="cell"><span class="cell-label">vena contracta ТН, мм</span><input class="cell-input" id="vctn" autocomplete="off" value="" type="number"><span class="ref" mMin="" mMax="" wMin="" wMax="">-</span></div>
-                <div class="cell"><span class="cell-label">Vmax ПК, м/с</span><input class="cell-input" id="vmaxpk" autocomplete="off" value="" type="number"><span class="ref" mMin="" mMax="<1,5" wMin="" wMax="<1,5">-</span></div>
-                <div class="cell"><span class="cell-label">ПН</span><input class="cell-input" id="pn" autocomplete="off" value=""><span class="ref" mMin="" mMax="" wMin="" wMax="">-</span></div>
-                <div class="cell"><span class="cell-label">vena contracta ПН, мм</span><input class="cell-input" id="vcpn" autocomplete="off" value="" type="number"><span class="ref" mMin="" mMax="" wMin="" wMax="">-</span></div>
+                <div class="cell"><span class="cell-label">Vmax АК, м/с</span><input class="cell-input" id="vmaxak" autocomplete="off" value="" type="number"><span class="ref" mMin="" mMax="<2.0" wMin="" wMax="<2.0"></span></div>
+                <div class="cell"><span class="cell-label">АН</span><input class="cell-input" id="an" autocomplete="off" value=""><span class="ref" mMin="" mMax="" wMin="" wMax=""></span></div>
+                <div class="cell"><span class="cell-label">vena contracta АН, мм</span><input class="cell-input" id="vcan" autocomplete="off" value="" type="number"><span class="ref" mMin="" mMax="" wMin="" wMax=""></span></div>
+                <div class="cell"><span class="cell-label">АС</span><input class="cell-input" id="as" autocomplete="off" value=""><span class="ref" mMin="" mMax="" wMin="" wMax=""></span></div>
+                <div class="cell"><span class="cell-label">МН</span><input class="cell-input" id="mn" autocomplete="off" value=""><span class="ref" mMin="" mMax="" wMin="" wMax=""></span></div>
+                <div class="cell"><span class="cell-label">vena contracta МН, мм</span><input class="cell-input" id="vcmn" autocomplete="off" value="" type="number"><span class="ref" mMin="" mMax="" wMin="" wMax=""></span></div>
+                <div class="cell"><span class="cell-label">МС</span><input class="cell-input" id="ms" autocomplete="off" value=""><span class="ref" mMin="" mMax="" wMin="" wMax=""></span></div>
+                <div class="cell"><span class="cell-label">ТН</span><input class="cell-input" id="tn" autocomplete="off" value=""><span class="ref" mMin="" mMax="" wMin="" wMax=""></span></div>
+                <div class="cell"><span class="cell-label">vena contracta ТН, мм</span><input class="cell-input" id="vctn" autocomplete="off" value="" type="number"><span class="ref" mMin="" mMax="" wMin="" wMax=""></span></div>
+                <div class="cell"><span class="cell-label">Vmax ПК, м/с</span><input class="cell-input" id="vmaxpk" autocomplete="off" value="" type="number"><span class="ref" mMin="" mMax="<1,5" wMin="" wMax="<1,5"></span></div>
+                <div class="cell"><span class="cell-label">ПН</span><input class="cell-input" id="pn" autocomplete="off" value=""><span class="ref" mMin="" mMax="" wMin="" wMax=""></span></div>
+                <div class="cell"><span class="cell-label">vena contracta ПН, мм</span><input class="cell-input" id="vcpn" autocomplete="off" value="" type="number"><span class="ref" mMin="" mMax="" wMin="" wMax=""></span></div>
 
             </div>
 
@@ -465,11 +476,11 @@
             <h2>📋 Отчёт</h2>
             <div class="top-button-bar">
                 <div class="left-action">
-                    <button class="btn" id="resetBtn">↺ Сброс</button>
+                    <button class="btn" id="copyX1ReportBtn">📄 ☰</button>
+                    <button class="btn" id="copyX2ReportBtn">📋 ☷</button>
                 </div>
                 <div class="right-actions">
-                    <button class="btn" id="copyX2ReportBtn">📋 Коп. X2</button>
-                    <button class="btn" id="copyX1ReportBtn">📋 Коп. X1</button>
+                    <button class="btn" id="resetBtn">↺ Сброс</button>
                 </div>
             </div>
             <textarea class="big-output" id="report" readonly>... значения появятся после расчёта</textarea>
