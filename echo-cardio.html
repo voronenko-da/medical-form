@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЭХОКГ – калькулятор</title>
+
+    <style>
+
+        .manual-input {
+            background-color: rgba(194, 244, 153, 0.27) !important;
+            border-bottom: 2px solid rgba(44, 255, 7, 0.42) !important;
+        }
+
+        .manual-mark {
+            color: rgba(44, 255, 7, 0.42);
+            font-weight: bold;
+            margin-left: 2px;
+            font-size: 1.2em;
+            vertical-align: middle;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background: #dbe4ed;
+            margin: 16px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .master-container {
+            max-width: 1600px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -8px #1a344e;
+            padding: 20px 18px 28px 18px;
+        }
+
+        h1 {
+            font-size: 1.7rem;
+            font-weight: 500;
+            margin: 0 0 4px 12px;
+            color: #0a2f44;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        h1 small {
+            font-size: 0.85rem;
+            background: #d0e2f2;
+            padding: 4px 12px;
+            border-radius: 40px;
+            color: #004070;
+            font-weight: 400;
+        }
+
+        .two-panel {
+            display: flex;
+            gap: 18px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+        }
+
+        /* Левая панель — таблица с 8 колонками */
+        .form-panel {
+            flex: 2;
+            min-width: 600px;
+            background: #f2f7fd;
+            border-radius: 24px;
+            padding: 14px 12px;
+            border: 1px solid #b9cee8;
+            box-shadow: inset 0 0 0 1px #ffffffcc, 0 12px 24px -16px #0b2f4e;
+        }
+
+        .excel-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 5px;
+        }
+
+        .cell {
+            background: #ffffff;
+            border: 1px solid #b8cde0;
+            border-radius: 10px;
+            padding: 6px 4px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #003057;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 5px #0000000c;
+            transition: 0.1s;
+            min-height: 68px;
+        }
+
+        .cell:hover {
+            border-color: #2c74b3;
+            background: #f3f9ff;
+        }
+
+        .cell-label {
+            font-weight: 700;
+            color: #1e4e7a;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.01rem;
+            white-space: normal;
+            word-break: break-word;
+            line-height: 1.2;
+            margin-bottom: 3px;
+            min-height: 24px;
+        }
+
+        .cell-input, .cell-result {
+            width: 100%;
+            border: none;
+            background: transparent;
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: #002856;
+            padding: 2px 2px;
+            border-bottom: 1px dashed #7fa2c2;
+        }
+
+        .cell-input:focus {
+            outline: none;
+            border-bottom: 2px solid #0073ce;
+            background: #ecf3fd;
+            border-radius: 4px 4px 0 0;
+            padding-left: 4px;
+        }
+
+        .cell-result {
+            border-bottom: 1px solid #88b0da;
+            background: #eaf1fb;
+            padding: 4px 4px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            color: #002856;
+            text-align: center;
+        }
+
+        .ref {
+            font-size: 0.7rem;
+            color: #3f6286;
+            margin-top: 2px;
+            white-space: nowrap;
+        }
+
+        /* Правая панель */
+
+        .text-panel {
+            flex: 1.2;
+            min-width: 300px;
+            background: #e9f0f9;
+            border-radius: 24px;
+            padding: 16px 14px;
+            border: 1px solid #c0d4ec;
+            box-shadow: 0 12px 22px -12px #142f44;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .text-panel h2 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #163a5e;
+            margin: 0 0 8px 0;
+            border-bottom: 2px solid #9ab8dd;
+            padding-bottom: 6px;
+        }
+
+        .big-output {
+            width: 100%;
+            flex: 1;
+            min-height: 400px;
+            background: #fefefd;
+            border: 2px solid #376b9e;
+            border-radius: 18px;
+            padding: 14px 12px;
+            font-family: 'Courier New', 'Fira Code', monospace;
+            font-size: 0.8rem;
+            line-height: 1.4;
+            resize: vertical;
+            white-space: pre;
+            overflow-x: auto;
+            box-shadow: inset 0 0 10px #bed9f0;
+            color: #0b2b50;
+        }
+
+        .btn {
+            background: white;
+            border: 2px solid #1b5a9c;
+            color: #1b5a9c;
+            padding: 8px 14px;
+            font-weight: 700;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 4px 8px #0000001a;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn:hover {
+            background: #e1efff;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 0.75rem;
+            color: #2c577c;
+            text-align: right;
+            border-top: 2px dashed #aac2df;
+            padding-top: 12px;
+        }
+
+        /* Разделители строк */
+
+        .section-title {
+            grid-column: span 8;
+            background: #c9ddef;
+            border: none;
+            border-radius: 20px;
+            padding: 6px 12px;
+            font-weight: 700;
+            color: #003a70;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 4px 0;
+        }
+
+        .top-button-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 12px;
+            background: #eef3fc;
+            padding: 10px 12px;
+            border-radius: 24px;
+            border: 1px solid #c7daee;
+        }
+
+        .left-action {
+            flex-shrink: 0;
+        }
+
+        .right-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="master-container">
+    <h1>👨‍⚕️ ЭХОКГ – калькулятор<small>0.0.7</small></h1>
+
+
+    <div class="two-panel">
+
+        <div class="form-panel">
+
+            <div class="excel-grid">
+
+                <div class="section-title">📏 Антропометрия</div>
+
+                <div class="cell"><span class="cell-label">ПОЛ</span>
+                    <select class="cell-input" id="gender">
+                        <option value="—">-</option>
+                        <option value="М">М</option>
+                        <option value="Ж">Ж</option>
+                    </select>
+                </div>
+
+                <div class="cell"><span class="cell-label">Рост, см</span><input class="cell-input" id="height" autocomplete="off" value="" type="number"><span class="ref">-</span></div>
+                <div class="cell"><span class="cell-label">Вес, кг</span><input class="cell-input" id="weight" autocomplete="off" value="" type="number"><span class="ref">-</span></div>
+                <div class="cell"><span class="cell-label">ППТ, м²</span><input class="cell-input" id="bsa" autocomplete="off" value="" type="number"><span class="ref">-</span></div>
+                <div class="cell"><span class="cell-label">Ритм</span><input class="cell-input" id="rhythm" autocomplete="off" value=""><span class="ref">-</span></div>
+
+                <div class="section-title">🩸 Аорта</div>
+
+                <div class="cell"><span class="cell-label">Ао син.,мм</span><input class="cell-input" id="aorta_sv" autocomplete="off" value="" type="number"><span class="ref" mMin="31" mMax="40" wMin="27" wMax="34">-</span></div>
+                <div class="cell"><span class="cell-label">Ао в.,мм</span><input class="cell-input" id="aorta_asc" autocomplete="off" value="" type="number"><span class="ref" mMin="26" mMax="38" wMin="23" wMax="33">-</span></div>
+                <div class="cell"><span class="cell-label">ИАо син.,мм/м²</span><span class="cell-result" id="aorta_sv_i"></span><span class="ref" mMin="0" mMax="19" wMin="0" wMax="20">-</span></div>
+                <div class="cell"><span class="cell-label">ИАо в., мм/м²</span><span class="cell-result" id="aorta_asc_i"></span><span class="ref" mMin="0" mMax="17" wMin="0" wMax="19">-</span></div>
+                <div class="cell"><span class="cell-label">Ао дуга</span><input class="cell-input" id="aorta_arc" autocomplete="off" value="" type="number"><span class="ref" mMin="27" mMax="36" wMin="27" wMax="36">-</span></div>
+
+                <div class="section-title">❤️ Левый желудочек</div>
+
+                <div class="cell"><span class="cell-label">ТМЖП,мм</span><input class="cell-input" id="mgp" autocomplete="off" value="" type="number"><span class="ref" mMin="6" mMax="10" wMin="6" wMax="9">-</span></div>
+                <div class="cell"><span class="cell-label">ТЗС,мм</span><input class="cell-input" id="zs" autocomplete="off" value="" type="number"><span class="ref" mMin="6" mMax="10" wMin="6" wMax="9">-</span></div>
+                <div class="cell"><span class="cell-label">КДР,мм</span><input class="cell-input" id="kdr" autocomplete="off" value="" type="number"><span class="ref" mMin="42" mMax="58" wMin="38" wMax="52">-</span></div>
+                <div class="cell"><span class="cell-label">КСР,мм</span><input class="cell-input" id="ksr" autocomplete="off" value="" type="number"><span class="ref" mMin="25" mMax="40" wMin="22" wMax="35">-</span></div>
+                <div class="cell"><span class="cell-label">ИКДР, мм/м²</span><span class="cell-result" id="kdr_i"></span><span class="ref" mMin="22" mMax="30" wMin="23" wMax="31">-</span></div>
+                <div class="cell"><span class="cell-label">ОТС</span><span class="cell-result" id="ots"></span><span class="ref" mMin="" mMax="<0.42" wMin="" wMax="<0.42">-</span></div>
+                <div class="cell"><span class="cell-label">ММ, г</span><input class="cell-input" id="mm" autocomplete="off" value="" type="number"><span class="ref" mMin="88" mMax="224" wMin="67" wMax="162">-</span></div>
+                <div class="cell"><span class="cell-label">ИММ, г/м²</span><span class="cell-result" id="mm_i"></span><span class="ref" mMin="49" mMax="115" wMin="43" wMax="95">-</span></div>
+                <div class="cell"><span class="cell-label">КДО сим, мл</span><input class="cell-input" id="kdo" autocomplete="off" value="" type="number"><span class="ref" mMin="62" mMax="150" wMin="46" wMax="106">-</span></div>
+                <div class="cell"><span class="cell-label">ИКДО, мл/м²</span><span class="cell-result" id="kdo_i"></span><span class="ref" mMin="34" mMax="74" wMin="29" wMax="61">-</span></div>
+                <div class="cell"><span class="cell-label">ФВ Симпсон,%</span><input class="cell-input" id="fv" autocomplete="off" value="" type="number"><span class="ref" mMin="52" mMax="72" wMin="54" wMax="74">-</span></div>
+                <div class="cell"><span class="cell-label">D ВТЛЖ, мм</span><input class="cell-input" id="vtlg" autocomplete="off" value="" type="number"><span class="ref">-</span></div>
+
+                <div class="section-title">📈 Диастолическая функция левого желудочка</div>
+
+                <div class="cell"><span class="cell-label">E,см/с</span><input class="cell-input" id="emk" autocomplete="off" value="" type="number"><span class="ref" mMin="ФП<100" mMax="" wMin="ФП<100" wMax="">-</span></div>
+                <div class="cell"><span class="cell-label">E/A</span><input class="cell-input" id="e_amk" autocomplete="off" value="" type="number"><span class="ref" mMin="0.8" mMax="2.0" wMin="0.8" wMax="2.0">-</span></div>
+                <div class="cell"><span class="cell-label">e'лат., см/с</span><input class="cell-input" id="el" autocomplete="off" value="" type="number"><span class="ref" mMin=">7" mMax="" wMin=">7" wMax="">-</span></div>
+                <div class="cell"><span class="cell-label">e'сеп., см/с</span><input class="cell-input" id="es" autocomplete="off" value="" type="number"><span class="ref" mMin=">6" mMax="" wMin=">6" wMax="">-</span></div>
+                <div class="cell"><span class="cell-label">e'ср., см/с</span><span class="cell-result" id="eavg"></span><span class="ref" mMin=">6.5" mMax="" wMin=">6.5" wMax="">-</span></div>
+
+                <div class="cell"><span class="cell-label">Е/e'ср.</span><input class="cell-input" id="emk_e" autocomplete="off" value="" type="number"><span class="ref" mMin="<14" mMax="" wMin="<14" wMax="">-</span></div>
+
+                <div class="cell"><span class="cell-label">V ТН, м/с</span><input class="cell-input" id="vtrmax" autocomplete="off" value="" type="number"><span class="ref" mMin="" mMax="<2.8" wMin="" wMax="<2.8">-</span></div>
+                <div class="cell"><span class="cell-label">Tdec, мс</span><input class="cell-input" id="tdex" autocomplete="off" value="" type="number"><span class="ref" mMin=">160" mMax="" wMin=">160" wMax="">-</span></div>
+                <div class="cell"><span class="cell-label">S/D</span><input class="cell-input" id="s_d" autocomplete="off" value="" type="number"><span class="ref" mMin=">0.67, ФП >1" mMax="" wMin=">0.67, ФП >1" wMax="">-</span></div>
+                <div class="cell"><span class="cell-label">IVRT, мс</span><input class="cell-input" id="ivrt" autocomplete="off" value="" type="number"><span class="ref" mMin=">70" mMax="" wMin=">70" wMax="">-</span></div>
+                <div class="cell"><span class="cell-label">ИМТ, кг/м²</span><span class="cell-result" id="imt"></span><span class="ref" mMin="<30" mMax="" wMin="<30" wMax="">-</span></div>
+
+                <div class="section-title">📐 Левое предсердие</div>
+
+                <div class="cell"><span class="cell-label">Диаметр ЛП, мм</span><input class="cell-input" id="dlp" autocomplete="off" value="" type="number"><span class="ref" mMin="30" mMax="40" wMin="27" wMax="38">-</span></div>
+                <div class="cell"><span class="cell-label">ОЛП, мл</span><input class="cell-input" id="olp" autocomplete="off" value="" type="number"><span class="ref" mMin="22" mMax="52" wMin="18" wMax="58">-</span></div>
+                <div class="cell"><span class="cell-label">ИОЛП, мл/м²</span><span class="cell-result" id="olp_i"></span><span class="ref" mMin="16" mMax="34" wMin="16" wMax="34">-</span></div>
+
+                <div class="section-title">💙 Правый желудочек</div>
+
+                <div class="cell"><span class="cell-label">Баз ПЖ, мм</span><input class="cell-input" id="pgb" autocomplete="off" value="" type="number"><span class="ref" mMin="25" mMax="42" wMin="25" wMax="42">-</span></div>
+                <div class="cell"><span class="cell-label">TAPSE, мм</span><input class="cell-input" id="tapse" autocomplete="off" value="" type="number"><span class="ref" mMin=">17" mMax="" wMin=">17" wMax="">-</span></div>
+                <div class="cell"><span class="cell-label">TASV, см/с</span><input class="cell-input" id="tavs" autocomplete="off" value="" type="number"><span class="ref" mMin=">9.5" mMax="" wMin=">9.5" wMax="">-</span></div>
+                <div class="cell"><span class="cell-label">Толщина стенки ПЖ, мм</span><input class="cell-input" id="spg" autocomplete="off" value="" type="number"><span class="ref" mMin="1" mMax="5" wMin="1" wMax="5">-</span></div>
+                <div class="cell"><span class="cell-label">ВТПЖ дис., мм</span><input class="cell-input" id="vtpg" autocomplete="off" value="" type="number"><span class="ref" mMin="17" mMax="27" wMin="17" wMax="27">-</span></div>
+
+
+                <div class="section-title">📐 Правое предсердие</div>
+
+                <div class="cell"><span class="cell-label">ОПП, мл</span><input class="cell-input" id="opp"><span class="ref" mMin="" mMax="" wMin="" wMax="">-</span></div>
+                <div class="cell"><span class="cell-label">ИОПП, мл/м²</span><span class="cell-result" id="opp_i"></span><span class="ref" mMin="18" mMax="32" wMin="15" wMax="27">-</span></div>
+                <div class="cell"><span class="cell-label">Площадь ПП, см²</span><input class="cell-input" id="spp" autocomplete="off" value="" type="number"><span class="ref" mMin="<18" mMax="" wMin="<18" wMax="">-</span></div>
+
+                <div class="section-title">📉 Расчетное СДЛА</div>
+
+                <div class="cell"><span class="cell-label">Диаметр НПВ, мм</span><input class="cell-input" id="dnpv" autocomplete="off" value="" type="number"><span class="ref" mMin="<21" mMax="" wMin="<21" wMax="">-</span></div>
+                <div class="cell"><span class="cell-label">ЛА, мм</span><input class="cell-input" id="la" autocomplete="off" value="" type="number"><span class="ref" mMin="15" mMax="25" wMin="15" wMax="25">-</span></div>
+                <div class="cell"><span class="cell-label">Р макс. ТН, мм рт. ст.</span><span class="cell-result" id="pmaxtr" autocomplete="off" value="" type="number"></span><span class="ref" mMin="" mMax="" wMin="" wMax="">-</span></div>
+                <div class="cell"><span class="cell-label">Расч. СДЛА, мм рт. ст.</span><input class="cell-input" id="sdla" autocomplete="off" value="" type="number"><span class="ref" mMin="" mMax="<35" wMin="" wMax="<35">-</span></div>
+
+                <div class="section-title">🩺 Описание клапанов</div>
+
+                <div class="cell"><span class="cell-label">Vmax АК, м/с</span><input class="cell-input" id="vmaxak" autocomplete="off" value="" type="number"><span class="ref" mMin="" mMax="<2.0" wMin="" wMax="<2.0">-</span></div>
+                <div class="cell"><span class="cell-label">АН</span><input class="cell-input" id="an" autocomplete="off" value=""><span class="ref" mMin="" mMax="" wMin="" wMax="">-</span></div>
+                <div class="cell"><span class="cell-label">vena contracta АН, мм</span><input class="cell-input" id="vcan" autocomplete="off" value="" type="number"><span class="ref" mMin="" mMax="" wMin="" wMax="">-</span></div>
+                <div class="cell"><span class="cell-label">АС</span><input class="cell-input" id="as" autocomplete="off" value=""><span class="ref" mMin="" mMax="" wMin="" wMax="">-</span></div>
+                <div class="cell"><span class="cell-label">МН</span><input class="cell-input" id="mn" autocomplete="off" value=""><span class="ref" mMin="" mMax="" wMin="" wMax="">-</span></div>
+                <div class="cell"><span class="cell-label">vena contracta МН, мм</span><input class="cell-input" id="vcmn" autocomplete="off" value="" type="number"><span class="ref" mMin="" mMax="" wMin="" wMax="">-</span></div>
+                <div class="cell"><span class="cell-label">МС</span><input class="cell-input" id="ms" autocomplete="off" value=""><span class="ref" mMin="" mMax="" wMin="" wMax="">-</span></div>
+                <div class="cell"><span class="cell-label">ТН</span><input class="cell-input" id="tn" autocomplete="off" value=""><span class="ref" mMin="" mMax="" wMin="" wMax="">-</span></div>
+                <div class="cell"><span class="cell-label">vena contracta ТН, мм</span><input class="cell-input" id="vctn" autocomplete="off" value="" type="number"><span class="ref" mMin="" mMax="" wMin="" wMax="">-</span></div>
+                <div class="cell"><span class="cell-label">Vmax ПК, м/с</span><input class="cell-input" id="vmaxpk" autocomplete="off" value="" type="number"><span class="ref" mMin="" mMax="<1,5" wMin="" wMax="<1,5">-</span></div>
+                <div class="cell"><span class="cell-label">ПН</span><input class="cell-input" id="pn" autocomplete="off" value=""><span class="ref" mMin="" mMax="" wMin="" wMax="">-</span></div>
+                <div class="cell"><span class="cell-label">vena contracta ПН, мм</span><input class="cell-input" id="vcpn" autocomplete="off" value="" type="number"><span class="ref" mMin="" mMax="" wMin="" wMax="">-</span></div>
+
+            </div>
+
+        </div>
+
+        <div class="text-panel">
+            <h2>📋 Отчёт</h2>
+            <div class="top-button-bar">
+                <div class="left-action">
+                    <button class="btn" id="resetBtn">↺ Сброс</button>
+                </div>
+                <div class="right-actions">
+                    <button class="btn" id="copyX2ReportBtn">📋 Копировать X2</button>
+                    <button class="btn" id="copyX1ReportBtn">📋 Копировать X1</button>
+                </div>
+            </div>
+            <textarea class="big-output" id="report" readonly>... значения появятся после расчёта</textarea>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        ЭХОКГ – калькулятор
+    </div>
+
+</div>
+
+<script>
+
+    (function () {
+
+        function calculateBsa() {
+            const height = getNum('height');
+            const weight = getNum('weight');
+            if (height && weight)
+                return 0.007184 * Math.pow(height, 0.725) * Math.pow(weight, 0.423);
+        }
+
+        function calculateAortaSvI() {
+            const asv = getNum('aorta_sv');
+            const bsa = getNum('bsa');
+            if (asv && bsa)
+                return asv / bsa;
+        }
+
+        function calculateAortaAscI() {
+            const aasc = getNum('aorta_asc');
+            const bsa = getNum('bsa');
+            if (aasc && bsa)
+                return aasc / bsa;
+        }
+
+        function calculateKdrI() {
+            const kdr = getNum('kdr');
+            const bsa = getNum('bsa');
+            if (kdr && bsa)
+                return kdr / bsa;
+        }
+
+        function calculateOts() {
+            const zs = getNum('zs');
+            const kdr = getNum('kdr');
+            if (zs && kdr)
+                return 2 * zs / kdr;
+        }
+
+        function calculateMm() {
+            const mgp = getNum('mgp');
+            const zs = getNum('zs');
+            const kdr = getNum('kdr');
+            if (mgp && zs && kdr)
+                return 0.8 * 1.04 * (Math.pow((mgp + zs + kdr) / 10, 3) - Math.pow(kdr / 10, 3)) + 0.6;
+        }
+
+        function calculateMmI() {
+            const mm = getNum('mm');
+            const bsa = getNum('bsa');
+            if (mm && bsa)
+                return mm / bsa;
+        }
+
+        function calculateKdoI() {
+            const kdo = getNum('kdo');
+            const bsa = getNum('bsa');
+            if (kdo && bsa)
+                return kdo / bsa;
+        }
+
+        function calculateEavg() {
+            const el = getNum('el');
+            const es = getNum('es');
+            if (el && es)
+                return (el + es) / 2;
+        }
+
+        function calculateEmk_e() {
+            const emk = getNum('emk');
+            const eavg = getNum('eavg');
+            if (emk && eavg)
+                return emk / eavg;
+        }
+
+        function calculateImt() {
+            const height = getNum('height');
+            const weight = getNum('weight');
+            if (height && weight)
+                return weight / (Math.pow(height / 100, 2));
+        }
+
+        function calculateOlpI() {
+            const olp = getNum('olp');
+            const bsa = getNum('bsa');
+            if (olp && bsa)
+                return olp / bsa;
+        }
+
+        function calculateOppI() {
+            const opp = getNum('opp');
+            const bsa = getNum('bsa');
+            if (opp && bsa)
+                return opp / bsa;
+        }
+
+        function calculatePmaxtr() {
+            const vtrmax = getNum('vtrmax');
+            if (vtrmax)
+                return 4 * Math.pow(vtrmax, 2);
+        }
+
+        const manualOverrides = {
+            mm: false,
+            bsa: false,
+            emk_e: false
+        };
+
+        function recalculateValues() {
+            setResult('bsa', calculateBsa(), 2);
+            setResult('aorta_sv_i', calculateAortaSvI(), 2);
+            setResult('aorta_asc_i', calculateAortaAscI(), 2);
+            setResult('kdr_i', calculateKdrI(), 2);
+            setResult('ots', calculateOts(), 2);
+            setResult('mm', calculateMm(), 2);
+            setResult('mm_i', calculateMmI(), 2);
+            setResult('kdo_i', calculateKdoI(), 2);
+            setResult('eavg', calculateEavg(), 2);
+            setResult('emk_e', calculateEmk_e(), 2);
+            setResult('imt', calculateImt(), 2);
+            setResult('olp_i', calculateOlpI(), 2);
+            setResult('opp_i', calculateOppI(), 2);
+            setResult('pmaxtr', calculatePmaxtr(), 2);
+        }
+
+        function printValue(item) {
+            return item.value + (item.ref ? ' [' + item.ref + ']' : '');
+        }
+
+        function buildConcatX2Text() {
+            const data = getJsonData();
+            const lines = [];
+            let maxLabelLength = 0
+            let maxValueLength = 0
+            data.forEach(chapter => {
+                chapter.items.forEach(item => {
+                    if (maxLabelLength < item.label.length)
+                        maxLabelLength = item.label.length;
+                    if (item.value) {
+                        if (maxValueLength < printValue(item).length)
+                            maxValueLength = printValue(item).length;
+                    }
+                });
+            });
+            data.forEach(chapter => {
+                let values = [];
+                chapter.items.forEach(item => {
+                    if (item.value) {
+                        const label = item.label.padEnd(maxLabelLength, ' ')
+                        values.push(label + '\t' + printValue(item).padEnd(maxValueLength));
+                    }
+                });
+                const mid = Math.ceil(values.length / 2);
+                const first = values.slice(0, mid);
+                const secon = values.slice(mid);
+                values.length = [];
+                for (let i = 0; i < first.length; i++)
+                    values.push(first[i] + '\t' + (secon[i] ? secon[i] : ''));
+                if (values.length > 0) {
+                    lines.push('● ' + chapter.chapter)
+                    values.forEach(item => {
+                        lines.push(item)
+                    })
+                }
+            });
+            return lines.join("\n");
+        }
+
+        function buildConcatX1Text() {
+            const data = getJsonData();
+            const lines = [];
+            let maxLabelLength = 0
+            let maxValueLength = 0
+            data.forEach(chapter => {
+                chapter.items.forEach(item => {
+                    if (maxLabelLength < item.label.length)
+                        maxLabelLength = item.label.length;
+                    if (item.value) {
+                        if (maxValueLength < printValue(item).length)
+                            maxValueLength = printValue(item).length;
+                    }
+                });
+            });
+            data.forEach(chapter => {
+                const values = []
+                chapter.items.forEach(item => {
+                    if (item.value) {
+                        const label = item.label.padEnd(maxLabelLength, ' ')
+                        values.push(label + '\t' + printValue(item).padEnd(maxValueLength));
+                    }
+                });
+                if (values.length > 0) {
+                    lines.push('● ' + chapter.chapter)
+                    values.forEach(item => {
+                        lines.push(item)
+                    })
+                }
+            });
+            return lines.join("\n");
+        }
+
+        function getJsonData() {
+            const grid = document.querySelector('.excel-grid');
+            const elements = grid.children;
+            const data = [];
+            let chapter;
+            for (let element of elements) {
+                if (element.classList.contains('section-title')) {
+                    if (chapter)
+                        data.push(chapter)
+                    chapter = {items: []};
+                    chapter.chapter = element.textContent.trim().substring(3);
+                }
+                if (element.classList.contains('cell')) {
+                    const item = {};
+                    item.label = element.querySelector('.cell-label').textContent.trim();
+                    if (item.label === 'ПОЛ') continue;
+                    item.ref = element.querySelector('.ref') && element.querySelector('.ref').innerText && element.querySelector('.ref').innerText !== '-' ? element.querySelector('.ref').innerText : '';
+                    const el = element.children[1];
+                    let value = el.tagName === 'SPAN' ? el.innerText : el.value;
+                    item.value = value && value !== '-' ? value : ''
+                    item.id = el.id
+                    chapter.items.push(item)
+                }
+            }
+            if (chapter)
+                data.push(chapter);
+            return data;
+        }
+
+        function getNum(id) {
+            const el = document.getElementById(id);
+            if (!el) return 0;
+            let v = parseFloat(el.tagName === 'INPUT' ? el.value : el.innerText);
+            return isNaN(v) ? 0 : v;
+        }
+
+        function setResult(id, value, digits = 1) {
+            if (manualOverrides[id])
+                return;
+            const span = document.getElementById(id);
+            if (span && span.tagName === 'INPUT') {
+                if (typeof value === 'number' && !isNaN(value)) span.value = roundUp(value, digits).toFixed(digits);
+                else if (typeof value === 'string') span.value = value;
+                else span.value = '';
+            } else if (span) {
+                if (typeof value === 'number' && !isNaN(value)) span.innerText = roundUp(value, digits).toFixed(digits);
+                else if (typeof value === 'string') span.innerText = value;
+                else span.innerText = '-';
+            }
+        }
+
+        function roundUp(val, digits) {
+            if (val === undefined || isNaN(val) || val === null) return 0;
+            if (val === 0) return 0;
+            const factor = Math.pow(10, digits);
+            const sign = val < 0 ? -1 : 1;
+            return Math.ceil(Math.abs(val) * factor - 1e-10) / factor * sign;
+        }
+
+        function updateReport() {
+            document.getElementById('report').value = buildConcatX1Text();
+        }
+
+        function fullUpdate() {
+            recalculateValues();
+            updateReport();
+        }
+
+        function onResetBtn() {
+            const inputs = document.querySelectorAll('.cell-input');
+            inputs.forEach(input => {
+                input.value = '';
+                input.classList.remove('manual-input');
+                manualOverrides[input.id] = false;
+            });
+            fullUpdate();
+        }
+
+        function copyX1ReportBtn() {
+            navigator.clipboard.writeText(buildConcatX1Text());
+            alert('Отчёт (1 колонка) скопирован в буфер обмена...')
+        }
+
+        function copyX2ReportBtn() {
+            navigator.clipboard.writeText(buildConcatX2Text());
+            alert('Отчёт (2 колонки) скопирован в буфер обмена...')
+        }
+
+        function onGenderUpdate() {
+            const refs = document.querySelectorAll('.ref');
+            refs.forEach(ref => {
+                const mMin = ref.getAttribute('mMin');
+                const mMax = ref.getAttribute('mMax');
+                const wMin = ref.getAttribute('wMin');
+                const wMax = ref.getAttribute('wMax');
+                const gender = document.getElementById('gender').value;
+                if (gender === "М") ref.innerText = [mMin, mMax].filter(Boolean).join(' - ');
+                else if (gender === "Ж") ref.innerText = [wMin, wMax].filter(Boolean).join(' - ');
+                else ref.innerText = '';
+            });
+        }
+
+        function onManualEdit(e) {
+            const input = e.target;
+            if (input.value !== '') {
+                manualOverrides[input.id] = true;
+                input.classList.add('manual-input');
+            } else {
+                manualOverrides[input.id] = false;
+                const mark = input.closest('.cell')?.querySelector('.manual-mark');
+                if (mark) mark.remove();
+                input.classList.remove('manual-input');
+            }
+            fullUpdate();
+        }
+
+        document.getElementById('gender').addEventListener('input', onGenderUpdate);
+
+        document.getElementById('resetBtn').addEventListener('click', onResetBtn);
+        document.getElementById('copyX1ReportBtn').addEventListener('click', copyX1ReportBtn);
+        document.getElementById('copyX2ReportBtn').addEventListener('click', copyX2ReportBtn);
+
+        document.querySelectorAll('.cell-input').forEach(inp => {
+            if (manualOverrides.hasOwnProperty(inp.id))
+                inp.addEventListener('input', onManualEdit);
+            inp.addEventListener('input', fullUpdate);
+            inp.addEventListener('change', fullUpdate);
+        });
+
+        fullUpdate();
+
+    })();
+
+</script>
+</body>
+</html>
