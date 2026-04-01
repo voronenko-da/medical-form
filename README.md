@@ -1,3 +1,5 @@
-# medical-form
+# Медицинские формы
 
-https://voronenko-da.github.io/medical-form/echo-cardio.html
+
++ [ЭХОКГ – калькулятор](https://voronenko-da.github.io/medical-form/echo-cardio.html)
+
